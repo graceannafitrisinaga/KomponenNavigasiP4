@@ -14,28 +14,32 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<!-- Layout for starting a new order -->
+<!-- Layout pertama yang ditampilkan di aplikasi untuk memulai sebuah orderan baru dengan menjalankan file StartFragment-->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".StartFragment">
 
+    <!-- data digunakan untuk mengambil variabel yang ada dalam file startFragment-->
     <data>
         <variable
             name="startFragment"
             type="com.example.cupcake.StartFragment" />
     </data>
 
+    <!-- ScrollView digunakan agar tampilan dapat di scroll ketika digunakan -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- Menggunakan linear layout untuk membungkus imageview, textview, dan button dengan orientasi vertikal -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="@dimen/side_margin">
 
+            <!-- Menambahkan gambar cupcake -->
             <ImageView
                 android:layout_width="@dimen/image_size"
                 android:layout_height="@dimen/image_size"
@@ -45,6 +49,7 @@
                 android:scaleType="center"
                 app:srcCompat="@drawable/cupcake" />
 
+            <!-- Membuat judul halaman aplikasi -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -54,6 +59,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline4"
                 android:textColor="@color/material_on_background_emphasis_medium" />
 
+            <!-- Menambahkan tiga tombol untuk memilih jumlah cupcake supaya dapat dipesan
+            button untuk order satu cupcake, metode orderCupcake() dipanggil dengan jumlah cupcake (1, 6, atau 12 cupcake) sebagai parameternya-->
             <Button
                 android:id="@+id/order_one_cupcake"
                 android:layout_width="wrap_content"
@@ -64,6 +71,7 @@
                 android:onClick="@{() -> startFragment.orderCupcake(1)}"
                 android:text="@string/one_cupcake" />
 
+            <!-- button untuk order enam cupcake -->
             <Button
                 android:id="@+id/order_six_cupcakes"
                 android:layout_width="wrap_content"
@@ -74,6 +82,7 @@
                 android:onClick="@{() -> startFragment.orderCupcake(6)}"
                 android:text="@string/six_cupcakes" />
 
+            <!-- button untuk order dua belas cupcake -->
             <Button
                 android:id="@+id/order_twelve_cupcakes"
                 android:layout_width="wrap_content"

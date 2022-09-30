@@ -14,12 +14,14 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<!-- Layout for selecting a pickup date -->
+<!-- Layout untuk menampilkan dan memilih opsi tanggal pengambilan cupcake -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".PickupFragment">
 
+    <!-- data digunakan untuk mengambil variabel viewModel yang ada dalam paket model pada file OrderViewModel
+    juga mengambil variabel yang ada dalam file pickupFragment-->
     <data>
         <variable
             name="viewModel"
@@ -30,15 +32,18 @@
             type="com.example.cupcake.PickupFragment" />
     </data>
 
+    <!-- ScrollView digunakan agar tampilan dapat di scroll ketika digunakan -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- Menggunakan constraint layout untuk membungkus textview, radio button, dan button -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/side_margin">
 
+            <!-- digunakan radiogroup untuk membungkus radio button yang digunakan untuk membuat pilihan pengambilan cupcakes-->
             <RadioGroup
                 android:id="@+id/date_options"
                 android:layout_width="wrap_content"
@@ -47,6 +52,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <!-- membuat radiobutton sebagai pilihan opsi pengambilan pesanan pada hari Kamis di klik maka akan di masukkan sebagai value parameter variabel dateOptions fungsi setDate pada ViewModel-->
                 <RadioButton
                     android:id="@+id/option0"
                     android:layout_width="wrap_content"
@@ -56,6 +62,7 @@
                     android:text="@{viewModel.dateOptions[0]}"
                     tools:text="Thursday" />
 
+                <!-- membuat radiobutton sebagai pilihan opsi pengambilan pesanan pada hari Jumat di klik maka akan di masukkan sebagai value parameter variabel dateOptions fungsi setDate pada ViewModel-->
                 <RadioButton
                     android:id="@+id/option1"
                     android:layout_width="wrap_content"
@@ -65,6 +72,7 @@
                     android:text="@{viewModel.dateOptions[1]}"
                     tools:text="Friday" />
 
+                <!-- membuat radiobutton sebagai pilihan opsi pengambilan pesanan pada hari Sabtu di klik maka akan di masukkan sebagai value parameter variabel dateOptions fungsi setDate pada ViewModel-->
                 <RadioButton
                     android:id="@+id/option2"
                     android:layout_width="wrap_content"
@@ -74,6 +82,7 @@
                     android:text="@{viewModel.dateOptions[2]}"
                     tools:text="Saturday" />
 
+                <!-- membuat radiobutton sebagai pilihan opsi pengambilan pesanan pada hari Minggu di klik maka akan di masukkan sebagai value parameter variabel dateOptions fungsi setDate pada ViewModel-->
                 <RadioButton
                     android:id="@+id/option3"
                     android:layout_width="wrap_content"
@@ -84,6 +93,7 @@
                     tools:text="Sunday" />
             </RadioGroup>
 
+            <!-- Menggunakan view dengan id divider dan widget divider -->
             <View
                 android:id="@+id/divider"
                 style="@style/Widget.Cupcake.Divider"
@@ -95,6 +105,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/date_options" />
 
+            <!-- Menggunakan textView dengan id subtotal sebagai value parameter variabel price pada viewModel dalam fungsi subtotal_price -->
             <TextView
                 android:id="@+id/subtotal"
                 style="@style/Widget.Cupcake.TextView"
@@ -106,6 +117,7 @@
                 app:layout_constraintTop_toBottomOf="@id/divider"
                 tools:text="Subtotal $5.00" />
 
+            <!-- Menggunakan button untuk menavigasikan ke fragment Summary sebagai tampilan layar berikutnya -->
             <Button
                 android:id="@+id/next_button"
                 android:layout_width="0dp"

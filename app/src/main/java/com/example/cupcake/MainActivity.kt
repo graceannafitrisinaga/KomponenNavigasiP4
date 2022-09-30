@@ -24,18 +24,19 @@ import androidx.navigation.ui.setupActionBarWithNavController
 /**
  * Activity for cupcake order flow.
  */
-// TODO 1:
+// TODO 1: Activity ini digunakan untuk menetapkan tampilan konten dengan menjalankan file activity_main
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        //menerima tata letak yang akan di-inflate
         super.onCreate(savedInstanceState)
 
-        // Retrieve NavController from the NavHostFragment
+        // Mengambil NavController dari NavhostFragment
         val navHostFragment = supportFragmentManager
                 .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
-        // Set up the action bar for use with the NavController
+        // Menyiapkan bilah aksi untuk digunakan dengan navcontroller
         setupActionBarWithNavController(navController)
     }
 }

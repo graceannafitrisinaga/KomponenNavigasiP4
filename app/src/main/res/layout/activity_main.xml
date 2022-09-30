@@ -14,7 +14,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<!-- Layout for the main activity -->
+<!-- Layout untuk file main activity -->
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -23,6 +23,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!--Fragment yang digunakan untuk membuat navigasi NavHostFragment  -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"

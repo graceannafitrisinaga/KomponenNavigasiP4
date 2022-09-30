@@ -25,18 +25,14 @@ import androidx.navigation.fragment.findNavController
 import com.example.cupcake.databinding.FragmentFlavorBinding
 import com.example.cupcake.model.OrderViewModel
 
-/**
- * [FlavorFragment] allows a user to choose a cupcake flavor for the order.
- */
-// TODO 4 :
+// TODO 4 : FlavorFragment digunakan agar pengguna dapat memilih rasa cupcake untuk pesanan
 class FlavorFragment : Fragment() {
 
-    // Binding object instance corresponding to the fragment_flavor.xml layout
-    // This property is non-null between the onCreateView() and onDestroyView() lifecycle callbacks,
-    // when the view hierarchy is attached to the fragment.
+    // Menggunakan variabel binding objek instance dengan hak akses private yang sesuai dengan layout fragment_flavor.xml
+    // Properti ini bukan nol antara pemanggilan kembali siklus fungsi onCreateView() dan onDestroyView() ketika hierarki tampilan dilampirkan ke fragmen.
     private var binding: FragmentFlavorBinding? = null
 
-    // Use the 'by activityViewModels()' Kotlin property delegate from the fragment-ktx artifact
+    // Menggunakan delegasi variabel sharedViewModes kotlin 'by activityViewModels()' dari artefak fragmen-ktx
     private val sharedViewModel: OrderViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -52,28 +48,24 @@ class FlavorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.apply {
-            // Specify the fragment as the lifecycle owner
+            // Menentukan fragmen sebagai pemilik siklus hidup
             lifecycleOwner = viewLifecycleOwner
 
-            // Assign the view model to a property in the binding class
+            // Menetapkan viewModel ke properti di kelas pengikatan
             viewModel = sharedViewModel
 
-            // Assign the fragment
+            // Menetapkan fragmen sebagai flavorFragment
             flavorFragment = this@FlavorFragment
         }
     }
 
-    /**
-     * Navigate to the next screen to choose pickup date.
-     */
+    // Menavigasikan atau mengarahkan ke layar berikutnya untuk memilih tanggal pengambilan yaitu pickupFragment
     fun goToNextScreen() {
         findNavController().navigate(R.id.action_flavorFragment_to_pickupFragment)
     }
 
-    /**
-     * This fragment lifecycle method is called when the view hierarchy associated with the fragment
-     * is being removed. As a result, clear out the binding object.
-     */
+    //Metode siklus fungsi fragmen ini dipanggil saat hierarki tampilan yang terkait dengan fragmen sedang dihapus.
+    // Akibatnya, dilakukan pembersihan objek yang mengikat.
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null

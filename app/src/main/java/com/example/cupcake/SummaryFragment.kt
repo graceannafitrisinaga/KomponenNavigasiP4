@@ -25,19 +25,14 @@ import androidx.fragment.app.activityViewModels
 import com.example.cupcake.databinding.FragmentSummaryBinding
 import com.example.cupcake.model.OrderViewModel
 
-/**
- * [SummaryFragment] contains a summary of the order details with a button to share the order
- * via another app.
- */
-// TODO 6:
+// TODO 6: SummaryFragment ini berisi ringkasan detail pesanan dengan tombol untuk membagikan pesanan melalui aplikasi lain
 class SummaryFragment : Fragment() {
 
-    // Binding object instance corresponding to the fragment_summary.xml layout
-    // This property is non-null between the onCreateView() and onDestroyView() lifecycle callbacks,
-    // when the view hierarchy is attached to the fragment.
+    // Menggunakan variabel binding objek instance dengan hak akses private yang sesuai dengan layout fragment_summary.xml
+    // Properti ini bukan nol antara pemanggilan kembali siklus fungsi onCreateView() dan onDestroyView() ketika hierarki tampilan dilampirkan ke fragmen.
     private var binding: FragmentSummaryBinding? = null
 
-    // Use the 'by activityViewModels()' Kotlin property delegate from the fragment-ktx artifact
+    // Menggunakan delegasi variabel sharedViewModes kotlin 'by activityViewModels()' dari artefak fragmen-ktx
     private val sharedViewModel: OrderViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -59,17 +54,14 @@ class SummaryFragment : Fragment() {
         }
     }
 
-    /**
-     * Submit the order by sharing out the order details to another app via an implicit intent.
-     */
+    // Fungsi yang digunakan untuk mengirim pesanan dengan membagikan detail pesanan ke aplikasi lain melalui maksud implisit
+    // Lalu digunakan toast untuk menampilkan pesan 'Send Order' ketika button Send Order to Another App
     fun sendOrder() {
         Toast.makeText(activity, "Send Order", Toast.LENGTH_SHORT).show()
     }
 
-    /**
-     * This fragment lifecycle method is called when the view hierarchy associated with the fragment
-     * is being removed. As a result, clear out the binding object.
-     */
+    //Metode siklus fungsi fragmen ini dipanggil saat hierarki tampilan yang terkait dengan fragmen sedang dihapus.
+    //Akibatnya, dilakukan pembersihan objek yang mengikat.
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null

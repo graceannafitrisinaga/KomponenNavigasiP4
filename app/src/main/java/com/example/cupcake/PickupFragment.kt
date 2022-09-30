@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+//nama paket
 package com.example.cupcake
 
 import android.os.Bundle
@@ -25,18 +26,14 @@ import androidx.navigation.fragment.findNavController
 import com.example.cupcake.databinding.FragmentPickupBinding
 import com.example.cupcake.model.OrderViewModel
 
-/**
- * [PickupFragment] allows the user to choose a pickup date for the cupcake order.
- */
-// TODO 5 :
+// TODO 5 : PickupFragment digunakan agar pengguna dapat memilih tanggal pengambilan cupcake
 class PickupFragment : Fragment() {
 
-    // Binding object instance corresponding to the fragment_pickup.xml layout
-    // This property is non-null between the onCreateView() and onDestroyView() lifecycle callbacks,
-    // when the view hierarchy is attached to the fragment.
+    // Menggunakan variabel binding objek instance dengan hak akses private yang sesuai dengan layout fragment_pickup.xml
+    // Properti ini bukan nol antara pemanggilan kembali siklus fungsi onCreateView() dan onDestroyView() ketika hierarki tampilan dilampirkan ke fragmen.
     private var binding: FragmentPickupBinding? = null
 
-    // Use the 'by activityViewModels()' Kotlin property delegate from the fragment-ktx artifact
+    // Menggunakan delegasi variabel sharedViewModes kotlin 'by activityViewModels()' dari artefak fragmen-ktx
     private val sharedViewModel: OrderViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -58,17 +55,13 @@ class PickupFragment : Fragment() {
         }
     }
 
-    /**
-     * Navigate to the next screen to see the order summary.
-     */
+    // Menavigasikan atau mengarahkan ke layar berikutnya untuk ringkasan orderan yaitu summaryFragment
     fun goToNextScreen() {
         findNavController().navigate(R.id.action_pickupFragment_to_summaryFragment)
     }
 
-    /**
-     * This fragment lifecycle method is called when the view hierarchy associated with the fragment
-     * is being removed. As a result, clear out the binding object.
-     */
+    //Metode siklus fungsi fragmen ini dipanggil saat hierarki tampilan yang terkait dengan fragmen sedang dihapus.
+    //Akibatnya, dilakukan pembersihan objek yang mengikat.
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null

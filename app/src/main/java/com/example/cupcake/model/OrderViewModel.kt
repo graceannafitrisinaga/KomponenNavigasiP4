@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+//nama paket
 package com.example.cupcake.model
 
 import androidx.lifecycle.LiveData
@@ -24,85 +25,72 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-/** Price for a single cupcake */
-// TODO 2 :
+// TODO 2 : Membuat ViewModel bersama untuk menyimpan data aplikasi dalam satu ViewModel
+
+// Membuat variabel price_per_cupcake dengan properti private untuk menetapkan harga satu cupcake
 private const val PRICE_PER_CUPCAKE = 2.00
 
-/** Additional cost for same day pickup of an order */
-private const val PRICE_FOR_SAME_DAY_PICKUP = 3.00
+// Membuat variabel price_for_same_day_pickup dengan properti private sebagai Biaya tambahan untuk pengambilan pesanan di hari yang sama
+private const val PRICE_FOR_SAME_DAY_PICKUP = 3
 
-/**
- * [OrderViewModel] holds information about a cupcake order in terms of quantity, flavor, and
- * pickup date. It also knows how to calculate the total price based on these order details.
- */
+// Class OrderViewModel untuk melanjutkan ViewModel agar dapat menyimpan informasi tentang pesanan cupcake dalam hal jumlah, rasa, dan tanggal pengambilan.
+// Dan juga bagaimana menghitung harga total berdasarkan rincian pesanan ini.
 class OrderViewModel : ViewModel() {
 
-    // Quantity of cupcakes in this order
+    // Mengubah jenis properti menjadi LiveData dan menambahkan kolom pendukung agar properti tersebut dapat diamati dan UI dapat diperbarui saat data sumber di model tampilan berubah.
+    // Membuat variabel _quantity untuk menentukan jumlah cupcakes dalam pesanan
     private val _quantity = MutableLiveData<Int>()
     val quantity: LiveData<Int> = _quantity
 
-    // Cupcake flavor for this order
+    // Membuat variabel _flavor untuk Menentukan Rasa cupcake dalam pesanan
     private val _flavor = MutableLiveData<String>()
     val flavor: LiveData<String> = _flavor
 
-    // Possible date options
+    // Membuat variabel dateOptions sebagai opsi tanggal pengambilan pesanan yang memungkinkan
     val dateOptions: List<String> = getPickupOptions()
 
-    // Pickup date
+    // Membuat variabel _date sebagai tanggal pengambilan pesanan
     private val _date = MutableLiveData<String>()
     val date: LiveData<String> = _date
 
-    // Price of the order so far
+    // Membuat variabel _price sebagai harga pesanan setelah memilih jumlah, rasa, dan tanggal pengambilan pesanan
     private val _price = MutableLiveData<Double>()
     val price: LiveData<String> = Transformations.map(_price) {
-        // Format the price into the local currency and return this as LiveData<String>
+        // Format harga ke dalam mata uang lokal dan mengembalikannya sebagai LiveData<String>
         NumberFormat.getCurrencyInstance().format(it)
     }
 
     init {
-        // Set initial values for the order
+        // Menetapkan nilai awal untuk pesanan
         resetOrder()
     }
 
-    /**
-     * Set the quantity of cupcakes for this order.
-     *
-     * @param numberCupcakes to order
-     */
+    // Fungsi setQuantity yang digunakan untuk Menetapkan jumlah cupcakes yang di pesan dimana variabel numberCupcake sesuai pesanan menggunakan tipe data Int
     fun setQuantity(numberCupcakes: Int) {
         _quantity.value = numberCupcakes
         updatePrice()
     }
 
-    /**
-     * Set the flavor of cupcakes for this order. Only 1 flavor can be selected for the whole order.
-     *
-     * @param desiredFlavor is the cupcake flavor as a string
-     */
+    // Fungsi setFlavor digunakan untuk Mengatur rasa cupcakes dalam pesanan.
+    // Hanya 1 rasa yang dapat dipilih untuk seluruh pesanan. variabel desiredFlavor adalah rasa cupcake sebagai string
     fun setFlavor(desiredFlavor: String) {
         _flavor.value = desiredFlavor
     }
 
-    /**
-     * Set the pickup date for this order.
-     *
-     * @param pickupDate is the date for pickup as a string
-     */
+    // Fungsi setDate digunakan untuk menetapkan tanggal pengambilan pesanan.
+    // variabel pickupDate adalah tanggal pengambilan sebagai string
     fun setDate(pickupDate: String) {
         _date.value = pickupDate
         updatePrice()
     }
 
-    /**
-     * Returns true if a flavor has not been selected for the order yet. Returns false otherwise.
-     */
+    // Fungsi hasNoFlavorSet digunakan untuk Mengembalikan nilai true jika rasa belum dipilih untuk pesanan.
+    // Mengembalikan false sebaliknya.
     fun hasNoFlavorSet(): Boolean {
         return _flavor.value.isNullOrEmpty()
     }
 
-    /**
-     * Reset the order by using initial default values for the quantity, flavor, date, and price.
-     */
+    // Fungsi resetOrder digunakan untuk mengatur ulang pesanan dengan menggunakan nilai default awal untuk kuantitas, rasa, tanggal, dan harga.
     fun resetOrder() {
         _quantity.value = 0
         _flavor.value = ""
@@ -110,21 +98,17 @@ class OrderViewModel : ViewModel() {
         _price.value = 0.0
     }
 
-    /**
-     * Updates the price based on the order details.
-     */
+    // Fungsi updatePrice digunakan untuk Memperbarui harga berdasarkan detail pesanan.
     private fun updatePrice() {
         var calculatedPrice = (quantity.value ?: 0) * PRICE_PER_CUPCAKE
-        // If the user selected the first option (today) for pickup, add the surcharge
+        // Seleksi if digunakan Jika pengguna memilih opsi pertama (hari ini) untuk pengambilan, maka dikenakan biaya tambahan
         if (dateOptions[0] == _date.value) {
             calculatedPrice += PRICE_FOR_SAME_DAY_PICKUP
         }
         _price.value = calculatedPrice
     }
 
-    /**
-     * Returns a list of date options starting with the current date and the following 3 dates.
-     */
+    // Fungsi getPickupOption digunakan untuk Mengembalikan daftar opsi tanggal yang dimulai dengan tanggal saat ini dan 3 tanggal berikut.
     private fun getPickupOptions(): List<String> {
         val options = mutableListOf<String>()
         val formatter = SimpleDateFormat("E MMM d", Locale.getDefault())

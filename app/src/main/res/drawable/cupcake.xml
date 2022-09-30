@@ -14,7 +14,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<!-- Cupcake icon for the start fragment -->
+<!-- Ikon Cupcake yang digunakan pada file start fragment -->
 <vector android:height="200dp" android:viewportHeight="413.71"
     android:viewportWidth="308.15" android:width="148.96909dp" xmlns:android="http://schemas.android.com/apk/res/android">
     <path android:fillColor="#4fc3f7" android:pathData="M34.33,218.79l-27.63,-11.72l-6.7,27.68l34.33,-15.96z"/>

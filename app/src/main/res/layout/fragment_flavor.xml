@@ -14,12 +14,14 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<!-- Layout for selecting a flavor -->
+<!-- Layout mmenampilkan daftar rasa cupcake dan memilih rasa cupcake sebagai opsi tombol pilihan dengan tombol Next.-->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".FlavorFragment">
 
+    <!-- data digunakan untuk mengambil variabel viewModel yang ada dalam paket model pada file OrderViewModel
+    juga mengambil variabel yang ada dalam file flavorFragment-->
     <data>
         <variable
             name="viewModel"
@@ -30,15 +32,18 @@
             type="com.example.cupcake.FlavorFragment" />
     </data>
 
+    <!-- ScrollView digunakan agar tampilan dapat di scroll ketika digunakan -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- Menggunakan constraint layout untuk membungkus textview, radio button, dan button -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/side_margin">
 
+            <!-- digunakan radiogroup untuk membungkus radio button yang digunakan untuk membuat pilihan rasa cupcakes-->
             <RadioGroup
                 android:id="@+id/flavor_options"
                 android:layout_width="wrap_content"
@@ -47,6 +52,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <!-- membuat radiobutton sebagai pilihan opsi rasa vanila di klik maka akan di masukkan sebagai value parameter fungsi setFlavor pada ViewModel-->
                 <RadioButton
                     android:id="@+id/vanilla"
                     android:layout_width="wrap_content"
@@ -55,6 +61,7 @@
                     android:onClick="@{() -> viewModel.setFlavor(@string/vanilla)}"
                     android:text="@string/vanilla" />
 
+                <!-- membuat radiobutton sebagai pilihan opsi rasa coklat di klik maka akan di masukkan sebagai value parameter fungsi setFlavor pada ViewModel-->
                 <RadioButton
                     android:id="@+id/chocolate"
                     android:layout_width="wrap_content"
@@ -63,6 +70,7 @@
                     android:onClick="@{() -> viewModel.setFlavor(@string/chocolate)}"
                     android:text="@string/chocolate" />
 
+                <!-- membuat radiobutton sebagai pilihan opsi rasa red velvet di klik maka akan di masukkan sebagai value parameter fungsi setFlavor pada ViewModel-->
                 <RadioButton
                     android:id="@+id/red_velvet"
                     android:layout_width="wrap_content"
@@ -71,6 +79,7 @@
                     android:onClick="@{() -> viewModel.setFlavor(@string/red_velvet)}"
                     android:text="@string/red_velvet" />
 
+                <!-- membuat radiobutton sebagai pilihan opsi rasa salted caramel di klik maka akan di masukkan sebagai value parameter fungsi setFlavor pada ViewModel-->
                 <RadioButton
                     android:id="@+id/salted_caramel"
                     android:layout_width="wrap_content"
@@ -79,6 +88,7 @@
                     android:onClick="@{() -> viewModel.setFlavor(@string/salted_caramel)}"
                     android:text="@string/salted_caramel" />
 
+                <!-- membuat radiobutton sebagai pilihan opsi rasa coffee di klik maka akan di masukkan sebagai value parameter fungsi setFlavor pada ViewModel-->
                 <RadioButton
                     android:id="@+id/coffee"
                     android:layout_width="wrap_content"
@@ -88,6 +98,7 @@
                     android:text="@string/coffee" />
             </RadioGroup>
 
+            <!-- Menggunakan view dengan id divider dan widget divider -->
             <View
                 android:id="@+id/divider"
                 style="@style/Widget.Cupcake.Divider"
@@ -98,6 +109,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/flavor_options" />
 
+            <!-- Menggunakan textView dengan id subtotal sebagai value parameter variabel price pada viewModel dalam fungsi subtotal_price -->
             <TextView
                 android:id="@+id/subtotal"
                 style="@style/Widget.Cupcake.TextView"
@@ -109,6 +121,7 @@
                 app:layout_constraintTop_toBottomOf="@id/divider"
                 tools:text="Subtotal $5.00" />
 
+            <!-- Menggunakan button untuk menavigasikan ke fragment Pickup sebagai tampilan layar berikutnya -->
             <Button
                 android:id="@+id/next_button"
                 android:layout_width="0dp"

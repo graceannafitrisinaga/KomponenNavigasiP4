@@ -28,15 +28,14 @@ import com.example.cupcake.model.OrderViewModel
 /**
  * This is the first screen of the Cupcake app. The user can choose how many cupcakes to order.
  */
-// TODO 3 :
+// TODO 3 : Memulai fragment awal yaitu fragment_start pada aplikasi
 class StartFragment : Fragment() {
 
-    // Binding object instance corresponding to the fragment_start.xml layout
-    // This property is non-null between the onCreateView() and onDestroyView() lifecycle callbacks,
-    // when the view hierarchy is attached to the fragment.
+    // Menggunakan variabel binding objek instance dengan hak akses private yang sesuai dengan layout fragment_start.xml
+    // Properti ini bukan nol antara pemanggilan kembali siklus fungsi onCreateView() dan onDestroyView() ketika hierarki tampilan dilampirkan ke fragmen.
     private var binding: FragmentStartBinding? = null
 
-    // Use the 'by activityViewModels()' Kotlin property delegate from the fragment-ktx artifact
+    // Menggunakan delegasi variabel sharedViewModes kotlin 'by activityViewModels()' dari artefak fragmen-ktx
     private val sharedViewModel: OrderViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -54,24 +53,24 @@ class StartFragment : Fragment() {
     }
 
     /**
-     * Start an order with the desired quantity of cupcakes and navigate to the next screen.
+     * Memulai pesanan dengan jumlah cupcake yang diinginkan dan menavigasikan ke layar berikutnya yaitu layar pilihan rasa cupcake
      */
     fun orderCupcake(quantity: Int) {
-        // Update the view model with the quantity
+        // Memperbarui sharedViewModel dengan parameter quantity yang di isi oleh pilihan jumlah cupcake yang akan di order
         sharedViewModel.setQuantity(quantity)
 
-        // If no flavor is set in the view model yet, select vanilla as default flavor
+        // Seleksi if yang akan dijalankan Jika belum ada rasa yang diatur dalam sharedViewModel, tetapkan vanilla sebagai rasa default
         if (sharedViewModel.hasNoFlavorSet()) {
             sharedViewModel.setFlavor(getString(R.string.vanilla))
         }
 
-        // Navigate to the next destination to select the flavor of the cupcakes
+        // Mengarahkan atau menavigasikan ke tujuan fragment berikutnya yaitu flavorFragment untuk memilih rasa cupcakes
         findNavController().navigate(R.id.action_startFragment_to_flavorFragment)
     }
 
     /**
-     * This fragment lifecycle method is called when the view hierarchy associated with the fragment
-     * is being removed. As a result, clear out the binding object.
+     * Metode siklus fungsi fragmen ini dipanggil saat hierarki tampilan yang terkait dengan fragmen sedang dihapus.
+     * Akibatnya, dilakukan pembersihan objek yang mengikat.
      */
     override fun onDestroyView() {
         super.onDestroyView()
